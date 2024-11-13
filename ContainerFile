@@ -1,0 +1,22 @@
+# Use the quay.io/qm-images/ros2:rolling base image
+FROM quay.io/qm-images/ros2:rolling
+
+# Set environment variables
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+ENV ROS_DISTRO=rolling
+
+# Install additional dependencies (adjust as needed)
+RUN dnf update -y && \
+    dnf install -y \
+    python3-pip \
+    && dnf clean all
+
+RUN pip3 install -U colcon-common-extensions
+
+COPY ./src/engine/engine /ros2_ws/src
+
+# Set up the ROS2 workspace
+WORKDIR /ros2_ws
+RUN echo "source /opt/ros2/install/setup.bash" >> ~/.bashrc
+RUN . /opt/ros2/install/setup.bash && colcon build
