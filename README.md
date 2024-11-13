@@ -38,8 +38,8 @@ This packages launches a rocket
 ## Example
 
 ``` python
-from rocket_launch_sim import RocketLaunch
-from rocket_launch_sim.nasa import curiosity_mission_operations
+from rocket_launcher import RocketLaunch
+from rocket_launcher.nasa import curiosity_mission_operations
 
 def main():
     # Initialize a RocketLaunch instance for the NASA Curiosity mission

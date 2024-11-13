@@ -11,8 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from rocket_launch_sim import RocketLaunch
-from rocket_launch_sim.spacex import spacex_booster_recovery
+from rocket_launcher import RocketLaunch
+from rocket_launcher.spacex import spacex_booster_recovery
 
 def main():
     # Initialize a RocketLaunch instance for a SpaceX Falcon 9 mission

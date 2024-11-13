@@ -11,8 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from rocket_launch_sim import RocketLaunch
-from rocket_launch_sim.nasa import curiosity_mission_operations
+from rocket_launcher import RocketLaunch
+from rocket_launcher.nasa import curiosity_mission_operations
 
 def main():
     # Step 1: Initialize a RocketLaunch instance for the NASA Curiosity mission

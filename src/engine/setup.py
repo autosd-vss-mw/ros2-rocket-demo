@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'rocket_launch_sim'
+package_name = 'rocket_launcher'
 
 setup(
     name=package_name,
