@@ -4,6 +4,10 @@ Welcome to the Rocket Launch Simulator based on CentOS, AutoSD and ROS2!
 This project allows you to simulate rocket launches, including specific mission operations.
 The simulation includes detailed stages, realistic delays, and even custom mission operations for a truly engaging experience!
 
+
+![Curiosity Rover](https://d2pn8kiwq2w21t.cloudfront.net/original_images/spaceimagesimageslargesizePIA14156_hires.jpg)
+
+
 ## Building
 
 To build all packages run:
