@@ -2,6 +2,9 @@
 
 ROS2 "rocket demo" using CentOS Stream and AutoSD.
 
+Welcome to the Rocket Launch Simulator! This project allows you to simulate rocket launches, including specific mission operations.
+The simulation includes detailed stages, realistic delays, and even custom mission operations for a truly engaging experience!
+
 ## Building
 
 To build all packages run:
@@ -27,6 +30,30 @@ This section describes how to run nodes within the `rocket_pkg`.
 #### 
 
 This packages launches a rocket
+
+## Example
+
+``` python
+from rocket_launch_sim import RocketLaunch
+from rocket_launch_sim.nasa import curiosity_mission_operations
+
+def main():
+    # Initialize a RocketLaunch instance for the NASA Curiosity mission
+    rocket = RocketLaunch(
+        rocket_name='Curiosity',
+        payload='Mars Rover',
+        mission_type='curiosity'
+    )
+
+    # Simulate the entire launch sequence for the Curiosity mission
+    rocket.simulate_launch()
+
+    # Perform NASA-specific operations for the Curiosity rover
+    curiosity_mission_operations(rocket)
+
+if __name__ == "__main__":
+    main()
+```
 
 ## License
 
