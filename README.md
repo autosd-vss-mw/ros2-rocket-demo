@@ -1,6 +1,7 @@
 # ROS2 Rocket Demo
 
-Welcome to the Rocket Launch Simulator based on CentOS, AutoSD and ROS2! This project allows you to simulate rocket launches, including specific mission operations.
+Welcome to the Rocket Launch Simulator based on CentOS, AutoSD and ROS2!  
+This project allows you to simulate rocket launches, including specific mission operations.
 The simulation includes detailed stages, realistic delays, and even custom mission operations for a truly engaging experience!
 
 ## Building
