@@ -6,7 +6,7 @@ The simulation includes detailed stages, realistic delays, and even custom missi
 
 
 ![Curiosity Rover](https://d2pn8kiwq2w21t.cloudfront.net/original_images/spaceimagesimageslargesizePIA14156_hires.jpg)
-Launched on a NASA rocket (NASA Atlas V), Curiosity touched down on Mars and now roams the Red Planet, uncovering its ancient secrets.
+<small>Launched on a NASA rocket (NASA Atlas V), Curiosity touched down on Mars and now roams the Red Planet, uncovering its ancient secrets.</small>
 
 
 ## Building
