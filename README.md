@@ -48,7 +48,7 @@ This section describes how to run nodes within the `rhover_control`.
 
 #### rhover_control.engine_manager
 
-This node subscribes to the `rhover_control_engine_manager` to abstarct engine operations.
+This node subscribes to the `rhover_control_engine_erver` to handle engine operations from client requests.
 
 Running the node:
 
@@ -56,10 +56,70 @@ Running the node:
 ros2 run rhover_control engine_manager
 ```
 
-Send data using the `ros2` cli:
+You can now open another tab and run client requests using ros2.
+
+Do not forget to  run `source install/setup.bash` for each new tab you open to run `ros2` commands.
+
+##### Services/Methods
+
+###### GetEngineState
+
+Return the engine's current state.
 
 ```sh
-ros2 topic pub /rhover_engine example_interfaces/msg/String "data: 'turn on'"
+$ ros2 service call /get_engine_state rhover_control_interfaces/srv/GetEngineState
+requester: making request: rhover_control_interfaces.srv.GetEngineState_Request()
+
+response:
+rhover_control_interfaces.srv.GetEngineState_Response(state=rhover_control_interfaces.msg.EngineState(on=False, speed=0.0, battery=100))
+```
+
+###### AdjustSpeed
+
+Ajust the Rhover speed, up or down.
+
+```sh
+ros2 service call /adjust_speed rhover_control_interfaces/srv/AdjustSpeed '{"speed": 10.0}'
+requester: making request: rhover_control_interfaces.srv.AdjustSpeed_Request(speed=10.0)
+
+response:
+rhover_control_interfaces.srv.AdjustSpeed_Response(err=rhover_control_interfaces.msg.ErrorStatus(err=False, errcode=0, errmsg=''))
+```
+
+It will return an error in case you try to reduce its speed and the rhover is already stopped or it does not have enough battery:
+
+```sh
+$ ros2 service call /adjust_speed rhover_control_interfaces/srv/AdjustSpeed '{"speed": -50.0}'
+requester: making request: rhover_control_interfaces.srv.AdjustSpeed_Request(speed=-50.0)
+
+response:
+rhover_control_interfaces.srv.AdjustSpeed_Response(err=rhover_control_interfaces.msg.ErrorStatus(err=True, errcode=1, errmsg='rhover is stopped'))
+```
+
+###### Battery State
+
+Checks the battery state as "ok" (high power), "warn" (somewhere above 50%) or "danger" (bellow 33%):
+
+```sh
+$ ros2 service call /battery_state rhover_control_interfaces/srv/BatteryState
+requester: making request: rhover_control_interfaces.srv.BatteryState_Request()
+
+response:
+rhover_control_interfaces.srv.BatteryState_Response(ok=True, warn=False, danger=False)
+```
+
+Each "AdjustSpeed" call reduces its battery power by 10.
+
+###### Stop
+
+Stops the rhover, reducing its speed to 0.
+
+```sh
+ros2 service call /stop rhover_control_interfaces/srv/Stop
+requester: making request: rhover_control_interfaces.srv.Stop_Request()
+
+response:
+rhover_control_interfaces.srv.Stop_Response(err=rhover_control_interfaces.msg.ErrorStatus(err=False, errcode=0, errmsg=''))
 ```
 
 ## License
