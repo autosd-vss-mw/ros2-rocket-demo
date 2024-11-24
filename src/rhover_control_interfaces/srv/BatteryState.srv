@@ -1,4 +1,4 @@
 ---
-bool red
-bool yellow
-bool green
+bool ok
+bool warn
+bool danger

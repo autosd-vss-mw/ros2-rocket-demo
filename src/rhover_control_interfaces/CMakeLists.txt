@@ -17,7 +17,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
     "msg/ErrorStatus.msg"
     "srv/AdjustSpeed.srv"
     "srv/BatteryState.srv"
-    "srv/EngineState.srv"
+    "srv/GetEngineState.srv"
     "srv/Stop.srv"
 )
 
