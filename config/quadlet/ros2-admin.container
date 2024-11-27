@@ -1,0 +1,14 @@
+[Unit]
+Description=ROS2 Admin Container
+After=rhover-pull-image.service
+
+[Container]
+Image=quay.io/lrossett/rhover-control:latest
+Network=bridge
+Exec=sleep infinity
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
