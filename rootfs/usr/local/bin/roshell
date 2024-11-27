@@ -1,0 +1,12 @@
+#!/bin/bash
+set -eo pipefail
+
+. /opt/ros/jazzy/setup.bash
+. /opt/ros2_ws/install/setup.bash
+
+if [ $# -gt 0 ]; then
+    exec "$@"
+else
+    echo 'No commands provided. Exiting...'
+    exit 1
+fi
