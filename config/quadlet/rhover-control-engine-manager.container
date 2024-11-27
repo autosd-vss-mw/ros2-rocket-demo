@@ -1,0 +1,14 @@
+[Unit]
+Description=RHover Control Engine Manager Server
+After=rhover-pull-image.service
+
+[Container]
+Image=quay.io/lrossett/rhover-control:latest
+Network=bridge
+Exec=ros2 run rhover_control engine_manager
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

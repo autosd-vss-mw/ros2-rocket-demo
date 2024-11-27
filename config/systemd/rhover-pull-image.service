@@ -1,0 +1,10 @@
+[Unit]
+Description=Pull container image using Podman
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/podman pull quay.io/lrossett/rhover-control:latest
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

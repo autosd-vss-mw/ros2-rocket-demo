@@ -1,0 +1,8 @@
+FROM quay.io/centos-sig-automotive/autosd:latest
+
+RUN dnf install -y iptables
+
+COPY config/quadlet/* /etc/containers/systemd/
+COPY config/systemd/*  /usr/lib/systemd/system/
+
+RUN systemctl enable rhover-pull-image
