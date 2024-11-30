@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from FOSS import BaseUGVController
+from time import sleep
+
+# Instantiate the controller with default parameters
+ugv_controller = BaseUGVController(
+    ssid="UGV",             # Default Wifi
+    password="12345678",    # Default Pass
+    ip="192.168.4.1",       # Default IP for the Rover
+    interface_name="wlan0"  # Your device interface name
+)
+
+# Connect to Wi-Fi
+ugv_controller.connect_to_wifi()
+
+# Move forward
+print("Moving forward...")
+ugv_controller.move(left_speed=0.5, right_speed=0.5)
+sleep(2)  # Move forward for 2 seconds
+
+# Move backward
+print("Moving backward...")
+ugv_controller.move_backwards(speed=0.5)
+sleep(2)  # Move backward for 2 seconds
+
+# Stop the UGV
+print("Stopping the UGV...")
+ugv_controller.move(left_speed=0, right_speed=0)

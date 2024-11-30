@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "FOSS"
+version = "0.1.0"
+description = "An open-source robotics package for ROS 2"
+readme = "README.md"
+dynamic = []
+requires-python = ">=3.8"
+authors = [
+    {name = "Douglas Schilling Landgraf", email = "dougsland@redhat.com"},
+    {name = "Leonardo Rossetti", email = "lrossett@redhat.com"}
+]
+license = {text = "Apache-2.0"}
+keywords = ["robotics", "ROS2", "open-source", "FOSS"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10"
+]
+dependencies = [
+    "requests>=2.25.0"
+]
+
+
+[project.scripts]
+FOSS_node = "FOSS.node:main"
+
+[project.urls]
+Homepage = "https://example.com"
+Documentation = "https://example.com/docs"
+Source = "https://github.com/yourusername/Robotics-and-ROS"
+Tracker = "https://github.com/yourusername/Robotics-and-ROS/issues"
+
+[tool.setuptools.packages.find]
+include = ["FOSS", "FOSS.*"]
+
+[tool.setuptools.data-files]
+"share/ament_index/resource_index/packages" = ["resource/FOSS"]
+"share/FOSS" = ["package.xml"]
