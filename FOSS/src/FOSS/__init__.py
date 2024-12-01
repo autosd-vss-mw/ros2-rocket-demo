@@ -95,16 +95,16 @@ class BaseUGVController:
 
         "T": 2: Configure the motor's PID parameters (Looks like it's not supported by the hardware)
     """
-    json_data = {
-        "T": 2,
-        "LF": left_front,
-        "LM": left_middle,
-        "LR": left_rear,
-        "RF": right_front,
-        "RM": right_middle,
-        "RR": right_rear
-    }
-    return self.send_json_command(json_data)
+        json_data = {
+            "T": 2,
+            "LF": left_front,
+            "LM": left_middle,
+            "LR": left_rear,
+            "RF": right_front,
+            "RM": right_middle,
+            "RR": right_rear
+        }
+        return self.send_json_command(json_data)
 
     def send_json_command(self, json_data):
         """

@@ -39,6 +39,7 @@ Source = "https://github.com/yourusername/Robotics-and-ROS"
 Tracker = "https://github.com/yourusername/Robotics-and-ROS/issues"
 
 [tool.setuptools.packages.find]
+where = ["src"]
 include = ["FOSS", "FOSS.*"]
 
 [tool.setuptools.data-files]
