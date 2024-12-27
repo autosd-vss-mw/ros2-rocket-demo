@@ -1,0 +1,81 @@
+#!/usr/bin/env python
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import pygame
+from FOSS import BaseUGVController
+from time import sleep
+
+# Instantiate the controller with default parameters
+ugv_controller = BaseUGVController(
+    ssid="UGV",             # Default Wifi
+    password="12345678",    # Default Pass
+    ip="192.168.4.1",       # Default IP for the Rover
+    interface_name="wlan0"  # Your device interface name
+)
+
+# Connect to Wi-Fi
+ugv_controller.connect_to_wifi()
+
+# Initialize pygame and joystick
+pygame.init()
+pygame.joystick.init()
+
+# Ensure a joystick is connected
+if pygame.joystick.get_count() == 0:
+    print("No joystick detected. Please connect a joystick.")
+    pygame.quit()
+    exit()
+
+# Get the first joystick
+joystick = pygame.joystick.Joystick(0)
+joystick.init()
+print(f"Joystick detected: {joystick.get_name()}")
+
+# Control loop
+try:
+    print("Use the joystick to control the UGV.")
+    print("Press Ctrl+C to exit.")
+
+    while True:
+        # Process events
+        pygame.event.pump()
+
+        # Get joystick axis values
+        axis_forward_back = joystick.get_axis(1)  # Forward/Backward
+        axis_left_right = joystick.get_axis(0)   # Left/Right
+
+        # Map axis values to speeds
+        forward_speed = -axis_forward_back  # Invert to match UGV forward
+        turn_speed = axis_left_right
+
+        # Calculate motor speeds
+        left_speed = forward_speed + turn_speed
+        right_speed = forward_speed - turn_speed
+
+        # Normalize speeds if necessary
+        max_speed = max(abs(left_speed), abs(right_speed), 1.0)
+        left_speed /= max_speed
+        right_speed /= max_speed
+
+        # Command the UGV
+        ugv_controller.move(left_speed=left_speed, right_speed=right_speed)
+
+        # Delay to avoid spamming commands
+        sleep(0.1)
+
+except KeyboardInterrupt:
+    print("\nStopping the UGV...")
+    ugv_controller.move(left_speed=0, right_speed=0)
+    print("UGV stopped. Exiting.")
+finally:
+    pygame.quit()
